@@ -1,0 +1,19 @@
+Package: equivtest
+Title: Equivalence Testing for Design Assumptions
+Version: 0.0.0.9000
+Authors@R: c(person("Erin", "Hartman", email = "ekhartman@ucla.edu", role = c("aut")),
+    person("Sydney", "Kahmann", email = "skahmann@ucla.edu", role = c("aut","cre")),
+    person("F. Daniel", "Hidalgo", email = "dhidalgo@mit.edu", role = c("aut")))
+Description: The **equivtest** package implements the equivalence tests discussed in its companion paper, *Hartman, E., & Hidalgo, F. D. (2018). An Equivalence Approach to Balance and Placebo Tests. American Journal of Political Science, 62(4), 1000-1013*. For each equivalence test in this package, we have included excerpts of the relevant discussion from the companion paper with a worked through example from *Wellek, S. (2010). Testing statistical hypotheses of equivalence and noninferiority. Chapman and Hall/CRC*. 
+Depends: R (>= 3.4.0)
+License: MIT
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Imports: EQUIVNONINF,
+    Hmisc,
+    BiasedUrn,
+    plm,
+    stringr    
+Suggests: testthat, knitr, rmarkdown
+VignetteBuilder: knitr
