@@ -13,7 +13,7 @@ library(equivtest)
 
 The **equivtest** package implements the equivalence tests discussed in its companion paper, *Hartman, E., & Hidalgo, F. D. (2018). An Equivalence Approach to Balance and Placebo Tests. American Journal of Political Science, 62(4), 1000-1013*.
 
-For each equivalence test in this package, we have included exerpts of the relevant discussion from the companion paper with a worked through example from *Wellek, S. (2010). Testing statistical hypotheses of equivalence and noninferiority. Chapman and Hall/CRC*. 
+For each equivalence test in this package, we have included excerpts of the relevant discussion from the companion paper with a worked through example from *Wellek, S. (2010). Testing statistical hypotheses of equivalence and noninferiority. Chapman and Hall/CRC*. 
 
 In general, the equivalence tests have up to three suitable epsilon inputs. The simplest, **eps_tol**, uses 'strict' or 'liberal' equivalence ranges for each test as defined in Wellek 2010. **eps_sub** allows the user to define the equivalence range based upon substantive knowledge of the data. For example, in the equivalence t-test **eps_sub** allows the user to input acceptable ranges for the raw difference in means. Finally, **eps_std** uses a standardized measure to set the equivalence range. For more information, see the help pages for the relevant equivalence testing functions. 
 

@@ -2,49 +2,25 @@
 
 This project was generously supported by a Methods Standards seed grant from [EGAP](https://www.egap.org).
 
+The **equivtest** package implements the equivalence tests discussed in its companion paper, *An Equivalence Approach to Balance and Placebo Tests*[<https://www.erinhartman.com/equivalence/>].
 
-Equivalence testing procedures
-
-Once you have the package files in R:
+**Installation:**
 
 ```{r]
 
-### delete old versions of package out of Packages window in RStudio
-### refresh the project for the package
-
+install.packages("devtools")
 library(devtools)
-library(roxygen2)
+install_github("ekhartman/equivtest")
 
-# if you want to run individual functions instead of loading the package, 
-# you may need to load these required packages
-# library(BiasedUrn)
-# library(testthat)
-# library(Exact)
-# library(Hmisc)
-# library(plm)
-# library(sandwich)
-# library(EQUIVNONINF)
-# library(stringr)
-
-# set to package file directory
-# setwd("C:/Users/Sydney/OneDrive/Research/Equivalence package/equivtest")
-
-document()
-setwd("..")
-library(roxygen2)
-install("equivtest")
-library(equivtest)
-
-### running unit tests
-
-library(testthat)
-# setwd("C:/Users/Sydney/OneDrive/Research/Equivalence package/equivtest")
-devtools::test()
 ```
 
-If installing after downloading the zip-file from Github:
+**Authors:** Erin Hartman [<ekhartman@ucla.edu>]; F. Daniel Hidalgo [<dhidalgo@mit.edu>]; Sydney Kahmann (Maintainer) [<skahmann@ucla.edu>]
 
-- Download zip-file 
-- Copy the 'equivtest-master' folder to computer
-- Rename as 'equivtest'
-- Use the code above, setting working directory appropriately
+**References:**   
+
+Hartman, E., & Hidalgo, F. D. (2018). An Equivalence Approach to Balance and Placebo Tests. American Journal of Political Science, 62(4), 1000-1013. 
+
+Wellek, S. (2010). Testing statistical hypotheses of equivalence and noninferiority. Chapman and Hall/CRC. 
+
+
+
