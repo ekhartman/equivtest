@@ -10,14 +10,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
 
-```{r setup}
+
+
+```r
 library(equivtest)
 ```
 
@@ -40,33 +36,22 @@ We now implement Example 6.1 from Wellek (2010). In summary, we wish to compare 
 
 *The data do not allow to reject the null hypothesis of nonequivalence of (treatment A) to (treatment B).*
 
-```{r, warning=FALSE}
+
+```r
 # Wellek p 124
 x=c(10.3,11.3,2,-6.1,6.2,6.8,3.7,-3.3,-3.6,-3.5,13.7,12.6)
 y=c(3.3,17.7,6.7,11.1,-5.8,6.9,5.8,3,6,3.5,18.7,9.6)
 res=equiv.t.test(x,y,eps_std=c(.5,1), alpha = .05)
 summary(res)
+#> Equivalence t-test 
+#> Input: eps_std,  SE = 2.793
+#> T-statistic critical interval: 0.28 to 0.931 
+#> Substantive equivalence CI: NA to NA 
+#> Standardized equivalence CI: NA to NA 
+#> Reject the null hypothesis? FALSE, p-value of NA
 ```
 
-```{r, warning=FALSE, echo=FALSE, eval=FALSE}
-# Wellek p 124
-x=c(10.3,11.3,2,-6.1,6.2,6.8,3.7,-3.3,-3.6,-3.5,13.7,12.6)
-y=c(3.3,17.7,6.7,11.1,-5.8,6.9,5.8,3,6,3.5,18.7,9.6)
-weights.x = rep(1, length(x))
-weights.y = rep(1, length(y))
-m <- as.double(length(x)) # no. observations x
-n <- as.double(length(y)) # no. observations y
-N <- m+n                  # total observations
-x.var <-  wtd.var(x, weights = weights.x) # variance x
-y.var <- wtd.var(y, weights = weights.y)  # variance y
-pooled.sd = sqrt(((m-1)*x.var+(n-1)*y.var)/(m+n-2))
-res=equiv.t.test(x,y,eps_tol="liberal")
-summary(res)
-res=equiv.t.test(x,y,eps_std=.74*pooled.sd)
-summary(res)
-res=equiv.t.test(x,y,eps_sub=.74*pooled.sd)
-summary(res)
-```
+
 
 ### Equivalence paired t-test
 
@@ -76,22 +61,21 @@ We now implement Example 5.3 from Wellek (2010). In summary, we wish to evaluate
 
 *We can conclude that at the 5% level, the experimental data of the present example contain sufficient evidence in support of the hypothesis that (the variable) does not change to a relevant extent over the (pre-treatment time interval).*
 
-```{r}
+
+```r
 # Wellek p 96
 x= c(10.3,11.3,2,-6.1,6.2,6.8,3.7,-3.3,-3.6,-3.5,13.7,12.6)
 res=equiv.paired.t.test(diff= x, alpha = .05, eps_std=.5, power.out = TRUE)
 summary(res)
+#> Equivalence paired t-test 
+#> Input type:  eps_std 
+#> t-test statistic:  2.051 
+#> Equivalence CI:  -1.097 to 1.097 
+#> Rejected the null? FALSE 
+#> Power of the test:  0.215
 ```
 
-```{r, echo=FALSE, eval=FALSE, warning=FALSE}
-# Wellek p 96
-res=equiv.paired.t.test(diff.mu=.16, diff.sd= 3.99, n=23, alpha = .05, eps_tol="strict", power.out = TRUE)
-summary(res)
-res=equiv.paired.t.test(diff.mu=.16, diff.sd= 3.99, n=23, alpha = .05, eps_sub=.25*3.99, power.out = TRUE)
-summary(res)
-res=equiv.paired.t.test(diff.mu=.16, diff.sd= 3.99, n=23, alpha = .05, eps_std=.25, power.out = TRUE)
-summary(res)
-```
+
 
 ### Fisher-Binomial Tests of Equivalence
 
@@ -107,29 +91,22 @@ We now implement Example 6.4 from Wellek (2010). In summary, we wish to compare 
 
 *At the 5% level of significance, the data of the trial allow the conclusion that the odds of a favorable response to (treatment A) do not fall by more than 50% as compared to those of a positive outcome after administering (treatment B).*
 
-```{r}
+
+```r
 # One-sided example from Wellek 2010, Example 6.4 pg 176
 A = c(rep(1, 98), rep(0, 8))
 B = c(rep(1, 97), rep(0, 10))
 res = fisher.binom.one.sided(A, B, eps_std= .5, 
                              alpha= 0.05, power.out = TRUE)
 summary(res)
+#> Equivalence One-Sided Fisher-Binomial Test 
+#> Input:  eps_std 
+#> Odds Ratio of Treatment Groups A and B:  1.263 
+#> Rejected the null? TRUE, p-value of 0.05
+#> Power of the test:  0.58
 ```
 
-```{r, echo=FALSE, eval=FALSE}
-# One-sided example from Wellek 2010, Example 6.4 pg 176
-A = c(rep(1, 98), rep(0, 8))
-B = c(rep(1, 97), rep(0, 10))
-res = fisher.binom.one.sided(A, B, eps_tol= "strict", 
-                             alpha= 0.05, power.out = TRUE)
-summary(res)
-res = fisher.binom.one.sided(A, B, eps_std= c(.41), 
-                             alpha= 0.05, power.out = TRUE)
-summary(res)
-res = fisher.binom.one.sided(A, B, eps_sub= .1, 
-                             alpha= 0.05, power.out = TRUE)
-summary(res)
-```
+
 
 #### Fisher-Binomial Two-Sided
 
@@ -139,29 +116,23 @@ We now implement Example 6.5 from Wellek (2010). In summary, we wish to compare 
 
 *The (data) do not allow to reject the null hypothesis that there are relevant differences between patients with and without (previous treatment) with respect to the probability of a positive response to the study medication.*
 
-```{r}
+
+```r
 
 # Two-sided example from Wellek 2010, pg 191
 A = c(rep(1, 108), rep(0, 117))
 B = c(rep(1, 63), rep(0, 56))
 res = fisher.binom.two.sided(A, B, eps_std=.41, alpha=0.05, power.out = TRUE)
 summary(res)
+#> Equivalence Two-Sided Fisher-Binomial Test 
+#> Input:  eps_std 
+#> Odds Ratio of Treatment Groups A and B:  0.821 
+#> Equivalence Odds Ratio CI:  0.551 to 1.815 
+#> Rejected the null? TRUE, p-value of 0.002
+#> Power of the test:  0.914
 ```
 
-```{r, echo=FALSE, eval=FALSE}
 
-# Two-sided example from Wellek 2010, pg 191
-A = c(rep(1, 108), rep(0, 117))
-B = c(rep(1, 63), rep(0, 56))
-res= fisher.binom.two.sided(A, B, eps_tol="strict", alpha=0.05, power.out = TRUE)
-summary(res)
-
-# Two-sided example from Wellek 2010, pg 191
-A = c(rep(1, 108), rep(0, 117))
-B = c(rep(1, 63), rep(0, 56))
-res= fisher.binom.two.sided(A, B, eps_sub=.1, alpha=0.05, power.out = TRUE)
-summary(res)
-```
 
 ### Two One-Sided Test (TOST) 
 
@@ -173,12 +144,16 @@ In the traditional case, we are interested in $H_1: \epsilon_L < \mu_T-\mu_C < \
 
 Here we use the equivalence t-test dataset from before, Wellek (2010) Example 6.1, refer to the code below for parameter choices. The observed mean difference is -3.033. Using a population mean difference of 10, we reject the null hypothesis. 
 
-```{r, warning=FALSE}
+
+```r
 # Wellek p 124
 x=c(10.3,11.3,2,-6.1,6.2,6.8,3.7,-3.3,-3.6,-3.5,13.7,12.6)
 y=c(3.3,17.7,6.7,11.1,-5.8,6.9,5.8,3,6,3.5,18.7,9.6)
 res1=tost(x,y,eps_sub=10, alpha=.1)
 summary(res1)
+#> Two-One-Sided Test 
+#> Lower and Upper Test Statistics: -4.667, 2.495
+#> Rejected the null? TRUE
 ```
 
 ### Two One-Sided Ratio Test (TOST Ratio) 
@@ -191,12 +166,18 @@ For the TOST ratio test, we are interested in $H_1: \epsilon_L < \frac{\mu_T}{\m
 
 Here we use the equivalence t-test dataset from before, Wellek (2010) Example 6.1, refer to the code below for parameter choices. The observed ratio is 0.579. Using a ratio of population mean X to population mean Y of 2, we reject the null hypothesis. 
 
-```{r}
+
+```r
 
 x=c(10.3,11.3,2,-6.1,6.2,6.8,3.7,-3.3,-3.6,-3.5,13.7,12.6)
 y=c(3.3,17.7,6.7,11.1,-5.8,6.9,5.8,3,6,3.5,18.7,9.6)
 res1=tost.ratio(x,y,frac=2)
+#> Warning in tost.ratio(x, y, frac = 2): No eps_sub or eps_std specified,
+#> using a default value of eps_std = 1.
 summary(res1)
+#> Two-One-Sided Ratio Test 
+#> Lower and Upper Test Statistics: -2.119, 7.718
+#> Rejected the null? TRUE
 ```
 
 

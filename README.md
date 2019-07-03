@@ -2,7 +2,7 @@
 
 This project was generously supported by a Methods Standards seed grant from [EGAP](https://www.egap.org).
 
-The **equivtest** package implements the equivalence tests discussed in its companion paper, *An Equivalence Approach to Balance and Placebo Tests*[<https://www.erinhartman.com/equivalence/>].
+The **equivtest** package implements the equivalence tests discussed in its companion paper, *An Equivalence Approach to Balance and Placebo Tests*. Link to paper: <https://www.erinhartman.com/equivalence/>.
 
 **Installation:**
 
